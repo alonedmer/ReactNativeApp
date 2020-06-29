@@ -7,7 +7,7 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react": "^16.11.0",
+    "react": "^16.13.1",
     "react-native": "^0.62.2"
   },
   "devDependencies": {
@@ -23,5 +23,13 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Android React-Native Hybird",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alonedmer/ReactNativeApp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alonedmer/ReactNativeApp/issues"
+  },
+  "homepage": "https://github.com/alonedmer/ReactNativeApp#readme"
 }

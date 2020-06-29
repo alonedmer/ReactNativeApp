@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 project.ext.react = [
-        enableHermes: true,  // clean and rebuild if changing 使用Hermes Js引擎速度更快
+        enableHermes: false,  // clean and rebuild if changing. Faster with Hermes JS engine
 ]
 def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false)
@@ -18,6 +18,25 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../keystore.jks")
+            storePassword KEYSTORE_PWD
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PWD
+        }
+        release {
+            storeFile file("../keystore.jks")
+            storePassword KEYSTORE_PWD
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PWD
+        }
     }
 
     buildTypes {
@@ -45,13 +64,13 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+' // From node_modules
     if (enableHermes) {
-        def hermesPath = "../node_modules/hermes-engine/android/";
+        def hermesPath = "../node_modules/hermes-engine/android/"
         debugImplementation files(hermesPath + "hermes-debug.aar")
         releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
         implementation jscFlavor
     }
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
